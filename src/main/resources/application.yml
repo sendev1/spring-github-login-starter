@@ -6,6 +6,11 @@ spring:
           github:
             client-id: Iv1.14bb656114ce1d7b
             client-secret: 8e2174fd090d08da9c91f503fe62674256bce47a
+            
+  output:
+    ansi:
+      enabled: always
+
   data:
     cassandra:
       keyspace-name: main

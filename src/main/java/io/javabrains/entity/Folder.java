@@ -15,6 +15,16 @@ public class Folder {
     @CassandraType(type = Name.TEXT)
     private String color;
 
+    public Folder() {
+    }
+    
+    public Folder(String userId, String label, String color) {
+        this.userId = userId;
+        this.label = label;
+        this.color = color;
+    }
+
+
     public String getUserId() {
         return userId;
     }
