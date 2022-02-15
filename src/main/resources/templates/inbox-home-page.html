@@ -59,7 +59,16 @@
         </nav>
         
         <main>
-         
+          <div class="list-group">
+
+            <a href="#" th:each="message : ${messages}" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1" th:text="${message.subject}">List group item heading</h5>
+                <small th:text="${message.perttyTime}">3 days ago</small>
+              </div>
+              <p class="mb-1" th:text="${message.tos}">Some placeholder content in a paragraph.</p>
+            </a>           
+          </div>
         </main>
   
         <footer>

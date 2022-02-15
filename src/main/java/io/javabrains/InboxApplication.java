@@ -1,6 +1,8 @@
 package io.javabrains;
 
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.stream.IntStream;
 
 import javax.annotation.PostConstruct;
 
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.javabrains.entity.Folder;
 import io.javabrains.entity.FolderRepository;
+import io.javabrains.entity.Message;
+import io.javabrains.entity.MessageRepository;
 
 import org.springframework.boot.autoconfigure.cassandra.CqlSessionBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +27,7 @@ import org.springframework.context.annotation.Bean;
 public class InboxApplication {
 
 	@Autowired FolderRepository folderRepository;
+	@Autowired MessageRepository messageRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(InboxApplication.class, args);
@@ -50,6 +55,12 @@ public class InboxApplication {
 		folderRepository.save(inbox);
 		folderRepository.save(sentItems);
 		folderRepository.save(important);
+		
+		IntStream.range(0, 10)
+		.boxed()
+		.map(i-> new Message("sendev1", "Inbox", Arrays.asList("sendev1"), "subject"+i, false))
+		.forEach(message -> messageRepository.save(message));
+		
 	}
 
 }
